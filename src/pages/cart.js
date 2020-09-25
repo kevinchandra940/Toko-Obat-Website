@@ -98,7 +98,7 @@ const Cartpage = (props) => {
                     <Button className="shadow  mb-5 " style={{ marginTop: '5vh', marginLeft: '30vw', width: '40vw', backgroundColor: '#e85661' }}>Checkout</Button>
                 </Link>
             </div>
-        );
+        ); 
     }
     else {
         return (
