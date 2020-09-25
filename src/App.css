@@ -36,3 +36,7 @@
     transform: rotate(360deg);
   }
 }
+
+.bt-invoice::hover{
+  text-decoration: underline;
+}
