@@ -16,6 +16,7 @@ export const getProfile = () => {
 export const editProfile = (body) => {
     return async (dispatch) => {
         try {
+            console.log("ini body",body)
             const res = await Axios.patch(URL + '/profile/edit/' + localStorage.getItem('id'), body)
             console.log(res.data)
 

@@ -1,126 +1,109 @@
 import React from 'react';
-import { Table, Button, Modal, ModalBody, ModalHeader, CardImg, CardText, ButtonGroup, Spinner } from 'reactstrap'
+import { connect } from 'react-redux'
+import { Table, Button, Input } from 'reactstrap'
+
+import { getUpdateStock, addStock } from '../actions'
 
 class Stockpage extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {  }
+        this.state = {
+            selectedId: null
+        }
     }
-    render() { 
-        return ( 
-          <div style={{ marginBottom: '20vh' }}>
-          <h1 style={{ marginLeft: '44vw', color: '#e85661', marginBottom: '5vh' }}>Stok Barang</h1>
-          <CardText style={{display:'flex'}}>
-              <h2 style={{ marginLeft: '18vw', color: '#e85661' }}>Obat Jadi</h2>
-              <h2 style={{ marginLeft: '42vw', color: '#e85661' }}>Obat Racik</h2>
-          </CardText>
-          <div style={{ display: 'flex' }}>
-              <Table style={{ color: '#e85661', width: '45vw', marginLeft: '3vw', marginTop: '1vh' }}>
-                  <thead>
-                      <tr>
-                          <th>#</th>
-                          <th>
-                              <h4>Nama Obat</h4>
-                          </th>
-                          <th>
-                              <h4>Kategori</h4>
-                          </th>
-                          <th>
-                              <h4>Tanggal</h4>
-                          </th>
-                          <th>
-                              <h4>Status</h4>
-                          </th>
-                          <th>
-                              <h4>Aksi</h4>
-                          </th>
-                      </tr>
-                  </thead>
-                  <tbody>
-                      <tr>
-                          <th scope="row">1</th>
-                          <td>Mark</td>
-                          <td>Otto</td>
-                          <td>@mdo</td>
-                          <td>@mdo</td>
-                          <td>
-                              <Button style={{ backgroundColor: '#e85661', borderColor: '#e85661' }}>Tambah</Button>
-                              <Button style={{ backgroundColor: '#e85661', borderColor: '#e85661' }}>Hapus</Button>
-                          </td>
-                      </tr>
-                      <tr>
-                          <th scope="row">2</th>
-                          <td>Jacob</td>
-                          <td>Thornton</td>
-                          <td>@fat</td>
-                          <td>@fat</td>
-                      </tr>
-                      <tr>
-                          <th scope="row">3</th>
-                          <td>Larry</td>
-                          <td>the Bird</td>
-                          <td>@twitter</td>
-                          <td>@twitter</td>
-                      </tr>
-                  </tbody>
-              </Table>
-              <Table style={{ color: '#e85661', width: '45vw', marginLeft: '3vw', marginTop: '1vh' }}>
-                  <thead>
-                      <tr>
-                          <th>#</th>
-                          <th>
-                              <h4>Nama Obat</h4>
-                          </th>
-                          <th>
-                              <h4>Kategori</h4>
-                          </th>
-                          <th>
-                              <h4>Tanggal</h4>
-                          </th>
-                          <th>
-                              <h4>Status</h4>
-                          </th>
-                          <th>
-                              <h4>Aksi</h4>
-                          </th>
-                      </tr>
-                  </thead>
-                  <tbody>
-                      <tr>
-                          <th scope="row">1</th>
-                          <td>Mark</td>
-                          <td>Otto</td>
-                          <td>@mdo</td>
-                          <td>@mdo</td>
-                          <td>
-                              <Button style={{ backgroundColor: '#e85661', borderColor: '#e85661' }}>Tambah</Button>
-                              <Button style={{ backgroundColor: '#e85661', borderColor: '#e85661' }}>Hapus</Button>
-                          </td>
-                      </tr>
-                      <tr>
-                          <th scope="row">2</th>
-                          <td>Jacob</td>
-                          <td>Thornton</td>
-                          <td>@fat</td>
-                          <td>@fat</td>
-                      </tr>
-                      <tr>
-                          <th scope="row">3</th>
-                          <td>Larry</td>
-                          <td>the Bird</td>
-                          <td>@twitter</td>
-                          <td>@twitter</td>
-                      </tr>
-                  </tbody>
-              </Table>
-          </div>
-          <ButtonGroup style={{}}>
-          <Button style={{ backgroundColor: '#e85661', borderColor: '#e85661', marginLeft: '37vw', width:'10vw' }}>Tambah Stock</Button>
-          <Button style={{ backgroundColor: '#e85661', borderColor: '#e85661', marginLeft: '38vw', width:'10vw' }}>Tambah Stock</Button>
-          </ButtonGroup>
-      </div>
-         );
+
+
+    componentDidMount() {
+        this.props.getUpdateStock()
+    }
+
+
+
+
+    handleAdd = (id) => {
+        this.setState({ selectedId: id })
+        console.log(this.state.selectedId)
+    }
+
+    handleCancel = (id) => {
+        this.setState({ selectedId: null })
+    }
+
+    renderTableHead = () => {
+        return (
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Jenis Kimia</th>
+                    <th>Nama Kimia</th>
+                    <th>Stok</th>
+                    <th>Perbarui</th>
+                </tr>
+            </thead>
+
+        )
+    }
+
+    handleOk = async (id) => {
+        const body = {
+            stock: this.botol.value,
+            id: id
+        }
+        console.log(body)
+        await this.props.addStock(body)
+        await this.props.getUpdateStock()
+        await this.setState({ selectedId: null })
+    }
+
+    renderTableBody = () => {
+        return this.props.stock.map((item, index) => {
+            if (item.id === this.state.selectedId) {
+                return (
+                    <tbody>
+                        <tr>
+                            <th scope="row">{item.id}</th>
+                            <td>{item.nama_kimia}</td>
+                            <td><Input type="text" name="botol" placeholder="masukan jumlah stok" innerRef={(botol) => this.botol = botol} style={{borderColor:'#e85661'}} /></td>
+                            <td>{item.sisa_stock}</td>
+                            <td><Button onClick={() => this.handleOk(item.id)} style={{backgroundColor:'#e85661', borderColor:'#e85661', marginRight:'1vw'}}>OK</Button>
+                                <Button onClick={() => this.handleCancel(item.id)}style={{backgroundColor:'#e85661', borderColor:'#e85661'}}>Batal</Button></td>
+                        </tr>
+                    </tbody>
+
+                )
+            } else {
+                return (
+                    <tbody>
+                        <tr>
+                            <th scope="row">{item.id}</th>
+                            <td>{item.nama_kimia}</td>
+                            <td>{item.stock} Botol {item.sisa_stock} ML</td>
+                            <td><Button onClick={() => this.handleAdd(item.id)} style={{backgroundColor:'#e85661', borderColor:'#e85661'}}>Tambah</Button></td>
+
+                        </tr>
+                    </tbody>
+                )
+            }
+        })
+    }
+
+    render() {
+        return (
+            <div style={{marginBottom:'20vh'}}>
+              <h1 style={{marginLeft:'47vw', color:'#e85661', marginBottom:'10vh'}}>Stok</h1>
+                <Table style={{color:'#e85661', width:'90vw', marginLeft:'5vw'}}>
+                    {this.renderTableHead()}
+                    {this.renderTableBody()}
+                </Table>
+            </div>
+        );
     }
 }
- 
-export default Stockpage;
+
+const mapStateToProps = (state) => {
+    return {
+        stock: state.adminReducer.stock
+    }
+}
+
+export default connect(mapStateToProps, { getUpdateStock, addStock })(Stockpage);

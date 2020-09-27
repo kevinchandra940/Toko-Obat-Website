@@ -43,8 +43,12 @@ class NavbarAdmincomponent extends React.Component {
 
 
     render() {
-        return (
+        // if(){
 
+        // }else{
+
+        // }
+        return (
             <div >
                 <Navbar color="black" light expand="md">
                     <NavbarBrand href="/" style={{marginLeft: '1vw' }}>
@@ -93,30 +97,10 @@ class NavbarAdmincomponent extends React.Component {
 
                                     <UncontrolledDropdown nav inNavbar style={{ marginLeft: '5vw' }}>
                                         <DropdownToggle nav caret>
-                                            <h4 style={{ backgroundColor: 'none', color: 'black' }}>{this.props.username.charAt(0).toUpperCase()}</h4>
+                                            <h4 style={{ backgroundColor: 'none', color: '#e85661' }}>{this.props.username.charAt(0).toUpperCase()}</h4>
                                         </DropdownToggle>
                                         <DropdownMenu right>
-                                            <DropdownItem>
-                                                <Link to='/profil' style={{ textDecoration: 'none', color: '#e85661' }}>
-                                                    <NavItem>
-                                                        Profil
-                                                </NavItem>
-                                                </Link>
-                                            </DropdownItem>
-                                            <DropdownItem>
-                                                <Link to='/keranjang' style={{ textDecoration: 'none', color: '#e85661' }}>
-                                                    <NavItem>
-                                                        Keranjang
-                                                </NavItem>
-                                                </Link>
-                                            </DropdownItem>
-                                            <DropdownItem>
-                                                <Link to='/riwayattransaksi' style={{ textDecoration: 'none', color: '#e85661' }}>
-                                                    <NavItem>
-                                                        Transaksi
-                                                </NavItem>
-                                                </Link>
-                                            </DropdownItem>
+                                    
                                             <DropdownItem>
                                                 <Link to='/' onClick={this.handleLogout} style={{ textDecoration: 'none', color: '#e85661' }}>
                                                     <NavItem style={{}}>

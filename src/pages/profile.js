@@ -2,23 +2,17 @@ import React from 'react';
 import {
     Card,
     Button,
-    CardHeader,
-    CardFooter,
     CardBody,
     CardTitle,
     CardText,
     CardImg,
-    CardSubtitle,
-    FormGroup,
     Label,
     Modal,
     ModalHeader,
     ModalBody,
-    ModalFooter,
-    Collapse,
-    ButtonLabel,
     Input,
-    Spinner
+    Spinner,
+    Collapse
 } from 'reactstrap';
 import { LoginAction } from '../actions'
 import { connect } from 'react-redux'
@@ -34,7 +28,11 @@ class Profilepage extends React.Component {
             edit: false,
             image: null,
             collapse: false,
-            modal: false
+            modal: false,
+            username : "",
+            email : "",
+            address : "",
+            phone : "",
         }
     }
 
@@ -50,14 +48,16 @@ class Profilepage extends React.Component {
     }
 
     handleSave = () => {
-        console.log(this.refs)
+        
         const body = {
-            address: this.refs.address.value,
-            phone: this.refs.phone.value,
-            gender: this.refs.gender.value
+            username: this.username.value,
+            email: this.email.value,
+            address: this.address.value,
+            phone: this.phone.value,
         }
         this.props.editProfile(body)
         this.setState({ edit: false })
+        console.log(this.username.value, this.email.value, this.address.value, this.phone.value)
     }
 
     handleChoose = (e) => {
@@ -67,17 +67,20 @@ class Profilepage extends React.Component {
 
     handleUpload = async () => {
         console.log('image : ', this.state.image)
-
+        
         const data = new FormData()
         data.append('IMG', this.state.image)
         console.log('form data : ', data.get('IMG'))
-
+        
         this.props.upload(data)
         this.setState({ image: null })
     }
-
+    
     render() {
-        const { image, address, phone, gender, nama, email } = this.props
+        setTimeout(() => this.setState({ready:true}), 1500)
+        if (this.state.ready) {
+            
+        const { image, address, phone, username, email } = this.props
         const { edit } = this.state
         return (
             <div style={{ marginBottom: '10vh', display: 'flex' }}>
@@ -91,7 +94,7 @@ class Profilepage extends React.Component {
                         <div className="button-profile">
                             <form encType="multipart/form-data">
 
-                                <CardImg src={image ? URL_IMG + image : avatar} alt="Card image cap" style={{ width: '20vw', height: '40vh', borderRadius: '1000px', marginTop: '8vh' }} >
+                                <CardImg src={image ? URL_IMG + image : avatar} alt="Card image cap" style={{ width: '20vw', height: '45vh', borderRadius: '1000px', marginTop: '7vh' }} >
                                 </CardImg>
                                 <div>
 
@@ -128,47 +131,32 @@ class Profilepage extends React.Component {
                         </div>
                     </Card>
                     <Card style={{ width: '40vw', backgroundColor: '#e85661' }}>
-                        <FormGroup
-                            defaultValue={nama ? nama : ''}
-                            disabled={!edit}
-                            ref="gender"
-                        ></FormGroup>
-                        <FormGroup
-                            defaultValue={email ? email : ''}
-                            disabled={!edit}
-                            ref="phone"
-                        />
-                        <FormGroup
-                            aria-describedby="basic-addon1"
-                            defaultValue={address ? address : ''}
-                            disabled={!edit}
-                            ref="address"
-                        />
 
-                        <h1 style={{ alignSelf: 'center', color: 'white' }}>Info Kamu</h1>
+                        <h1 style={{ alignSelf: 'center', color: 'white', marginTop:'10vh' }}>Info Kamu</h1>
                         <CardBody style={{ color: 'white', alignSelf: 'center', marginTop: '10vh' }}>
                             <CardTitle><h3>Nama : {this.props.username}</h3></CardTitle>
                             <CardText><h3>Email : {this.props.email}</h3></CardText>
-                            <CardText><h3>Jenis Kelamin : {this.props.gender}</h3></CardText>
                             <CardText><h3>Alamat : {this.props.address}</h3></CardText>
-                            <CardText><h3>No. Handphone: {this.props.phone}</h3></CardText>
+                            <CardText><h3>No. Handphone : {this.props.phone}</h3></CardText>
                         </CardBody>
-                        <Button onClick={this.modal} style={{ backgroundColor: '#39b4ea', borderColor: '#39b4ea', marginBottom:'20vh', width:'10vw', marginLeft:'15vw' }}>Edit Profil</Button>
+                        <Button onClick={this.modal} style={{ backgroundColor: '#39b4ea', borderColor: '#39b4ea', marginBottom:'20vh', width:'10vw', marginLeft:'15vw' }}>Perbarui Profil</Button>
                         <Modal isOpen={this.state.modal} toggle={this.modal} style={{ marginTop: '10vh' }}>
-                            <ModalHeader toggle={this.modal} style={{ color: '#39b4ea', marginLeft: '13vw' }}>Edit Profil</ModalHeader>
+                            <ModalHeader toggle={this.modal} style={{ color: '#39b4ea', marginLeft: '9vw' }}>Perbarui Profil Kamu</ModalHeader>
                             <ModalBody>
-                                <Label for="exampleEmail">Nama</Label>
-                                <Input type="Nama" name="Nama" id="exampleEmail" placeholder="nama baru" />
+                                <Label  for="exampleEmail">Nama</Label>
+                                    <Input innerRef={(username) => this.username = username} type="Nama" name="Nama" id="exampleEmail" placeholder="nama baru" style={{marginBottom:'1vh'}} />
                                 <Label for="exampleEmail">Email</Label>
-                                <Input type="email" name="email" id="exampleEmail" placeholder="email baru" />
+                                    <Input innerRef={(email) => this.email = email} type="email" name="email" id="exampleEmail" placeholder="email baru" style={{marginBottom:'1vh'}}/>
                                 <Label for="exampleEmail">Alamat</Label>
-                                <Input type="Alamat" name="Alamat" id="exampleEmail" placeholder="alamat baru" />
+                                    <Input innerRef={(address) => this.address = address} type="Alamat" name="Alamat" id="exampleEmail" placeholder="alamat baru" style={{marginBottom:'1vh'}} />
                                 <Label for="exampleEmail">No. Handphone</Label>
-                                <Input type="Phone" name="Phone" id="exampleEmail" placeholder="nomor baru" />
+                                    <Input innerRef={(phone) => this.phone = phone} type="Phone" name="Phone" id="exampleEmail" placeholder="nomor baru" />
                                 
 
-                                <div style={{ marginLeft: '10vw', marginTop: '3vh' }}>
-                                    <Button className="button" style={{ backgroundColor: '#39b4ea', borderColor: '#39b4ea', width: '10vw' }} onClick={() => this.setState({ edit: true })}>Konfirmasi</Button>
+                                <div style={{ marginLeft: '10vw', marginTop: '3vh', color:'#e85661', width:'10vw' }}>
+                                { !edit ? <Button style={{backgroundColor:'#e85661',borderColor:'#e85661', width:'10vw'}} className="button" onClick={() => this.setState({ edit : true })}>Perbarui</Button> : null}
+                                { edit ? <Button style={{backgroundColor:'#e85661', width:'10vw',borderColor:'#e85661'}}  className="button" variant="success" onClick={this.handleSave}>Simpan</Button> : null}
+                                
                                 </div>
                             </ModalBody>
                         </Modal>
@@ -180,7 +168,25 @@ class Profilepage extends React.Component {
             </div>
         );
     }
+    else {
+        return (
+            <div style={{marginLeft:'32vw', marginTop:'20vh', marginBottom:'40vh'}}>
+            <Spinner type="grow" color="primary"style={{width:'10vh', height:'5vw'}} />
+            <Spinner type="grow" color="secondary" style={{width:'10vh', height:'5vw'}} />
+            <Spinner type="grow" color="success"style={{width:'10vh', height:'5vw'}}/>
+            <Spinner type="grow" color="danger" style={{width:'10vh', height:'5vw'}}/>
+            <Spinner type="grow" color="warning" style={{width:'10vh', height:'5vw'}}/>
+            <Spinner type="grow" color="info" style={{width:'10vh', height:'5vw'}}/>
+            <Spinner type="grow" color="dark" style={{width:'10vh', height:'5vw'}}/>
+            </div>
+        )
+    
+    }
 }
+
+
+}
+
 
 const mapStateToProps = (state) => {
     return {

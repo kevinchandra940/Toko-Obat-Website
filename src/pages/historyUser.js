@@ -8,6 +8,9 @@ class RiwayatTransaksipage extends React.Component {
         this.state = {}
     }
     render() {
+        setTimeout(() => this.setState({ready:true}), 1500)
+        if (this.state.ready) {
+            
         return (
             <div style={{ marginBottom: '20vh' }}>
                 <h1 style={{ marginLeft: '38vw', marginBottom:'10vh', color:'#e85661' }}>Riwayat Transaksi</h1>
@@ -46,6 +49,22 @@ class RiwayatTransaksipage extends React.Component {
             </div>
         );
     }
+    else {
+        return (
+            <div style={{marginLeft:'32vw', marginTop:'20vh', marginBottom:'40vh'}}>
+            <Spinner type="grow" color="primary"style={{width:'10vh', height:'5vw'}} />
+            <Spinner type="grow" color="secondary" style={{width:'10vh', height:'5vw'}} />
+            <Spinner type="grow" color="success"style={{width:'10vh', height:'5vw'}}/>
+            <Spinner type="grow" color="danger" style={{width:'10vh', height:'5vw'}}/>
+            <Spinner type="grow" color="warning" style={{width:'10vh', height:'5vw'}}/>
+            <Spinner type="grow" color="info" style={{width:'10vh', height:'5vw'}}/>
+            <Spinner type="grow" color="dark" style={{width:'10vh', height:'5vw'}}/>
+            </div>
+        )
+    
+    }
+}
+
 }
 
 export default RiwayatTransaksipage;

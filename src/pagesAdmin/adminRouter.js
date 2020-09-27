@@ -9,6 +9,7 @@ import Transaksipage from './transaksi'
 import Stockpage from './stock'
 import NavbarAdmincomponent from '../components/navbarAdmin'
 import Footercomponent from '../components/footer'
+import {connect} from 'react-redux'
 
 class Adminrouter extends React.Component {
     constructor(props) {
@@ -17,8 +18,10 @@ class Adminrouter extends React.Component {
     }
     render() { 
         return ( 
-            <div>
+            <div>{
+                this.props.role=='admin'&&
                 <NavbarAdmincomponent></NavbarAdmincomponent>
+                }
                 <Route path={this.props.match.path + '/login'} component = {AdminLoginpage} exact/>
                 <Route path={this.props.match.path + '/pengguna'} component = {Penggunapage} />
                 <Route path={this.props.match.path + '/pesanan'} component = {Pesananpage} />
@@ -30,4 +33,10 @@ class Adminrouter extends React.Component {
     }
 }
  
-export default Adminrouter;
+const mapStateToProps = (state) => {
+    return {
+        role : state.userReducer.role
+    }
+}
+
+export default connect(mapStateToProps) (Adminrouter);

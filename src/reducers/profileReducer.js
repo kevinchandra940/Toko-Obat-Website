@@ -4,7 +4,9 @@ const INITIAL_STATE = {
     image: '',
     address: '',
     gender: '',
-    phone: ''
+    phone: '',
+    username: '',
+    email: '',
 }
 
 const profileReducer = (state = INITIAL_STATE, action) => {
@@ -15,10 +17,12 @@ const profileReducer = (state = INITIAL_STATE, action) => {
                 image: action.payload[0].image,
                 address: action.payload[0].address,
                 gender: action.payload[0].gender,
-                phone: action.payload[0].phone
+                phone: action.payload[0].phone,
+                username: action.payload[0].username,
+                email: action.payload[0].email,
             }
-        case EDIT_PROFILE:
-            return { ...state, profile: action.payload }
+        // case EDIT_PROFILE:
+        //     return { ...state, profile: action.payload }
 
         case LOGOUT:
             return INITIAL_STATE

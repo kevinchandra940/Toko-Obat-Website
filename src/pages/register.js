@@ -95,7 +95,7 @@ class Registerpage extends React.Component {
               Jenis Kelamin
             </DropdownToggle>
             <DropdownMenu>
-              <DropdownItem header>Laki - Laki</DropdownItem>
+              <DropdownItem header innerRef={(gender) => this.gender = gender}>Laki - Laki</DropdownItem>
               <DropdownItem header>Perempuan</DropdownItem>
             </DropdownMenu>
             

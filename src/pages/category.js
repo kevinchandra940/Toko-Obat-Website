@@ -20,6 +20,7 @@ class Categorypage extends React.Component {
 
         }
     }
+    
 
     render() {
         const { match } = this.props

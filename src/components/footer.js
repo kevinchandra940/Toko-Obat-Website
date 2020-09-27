@@ -23,7 +23,7 @@ class Footercomponent extends React.Component {
                 <CardText style={{ width: '10vw', marginLeft: '10vw' }}>
                     <h7 style={{ marginLeft: '0vw', color:'#e85661' }}>Purwadhika Campus BSD
                     BSD Green Office Park, GOP 9 - G
-Floor, BSD City, Tangerang Banten</h7>
+                    Floor, BSD City, Tangerang Banten</h7>
                 </CardText>
                 <CardText style={{marginLeft:'15vw'}}>
                     <div class="social-container">

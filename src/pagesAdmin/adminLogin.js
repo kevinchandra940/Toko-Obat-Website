@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import { Col, Row, Button, Form, FormGroup, Label, Input, Card, CardBody, CardTitle, CardText, Spinner } from 'reactstrap';
+import { Col, Row, Button, Form, FormGroup, Label, Input, Card, CardBody, CardTitle, CardText, Spinner, Navbar } from 'reactstrap';
 import { Link } from 'react-router-dom'
 import Axios from 'axios'
 import { Redirect } from 'react-router-dom'
@@ -29,7 +29,7 @@ class AdminLoginpage extends React.Component {
 
     render() {
         if (this.props.username) {
-            return<Redirect to='/'/>
+            return<Redirect to='/admin/login'/>
         }
 
         return (

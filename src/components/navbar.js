@@ -6,14 +6,11 @@ import {
     NavbarBrand,
     Nav,
     NavItem,
-    NavLink,
     UncontrolledDropdown,
     DropdownToggle,
     DropdownMenu,
     DropdownItem,
     NavbarText,
-    Text,
-    CardImg
 } from 'reactstrap';
 import { Button, FormControl, Form } from 'react-bootstrap';
 import { Link } from 'react-router-dom'
@@ -72,17 +69,17 @@ class Navbarcomponent extends React.Component {
                                     <h3>Berita</h3>
                                 </Link>
                             </NavItem>
-                            <NavItem style={{ textDecoration: 'none', color: 'black', marginLeft: '2vw', marginRight: '2vw' }}>
+                            {/* <NavItem style={{ textDecoration: 'none', color: 'black', marginLeft: '2vw', marginRight: '2vw' }}>
                                 <Link to='/test' style={{ color: '#e85661', textDecoration: 'none' }}>
                                     <h3>TEST PAGE</h3>
                                 </Link>
-                            </NavItem>
+                            </NavItem> */}
 
 
-                            <Form inline style={{ marginLeft: '5vw' }}>
+                            {/* <Form inline style={{ marginLeft: '5vw' }}>
                                 <FormControl type="text" placeholder="Search" className=" mr-sm-2" />
                                 <Button style={{ backgroundColor: '#e85661', textDecoration: 'none', borderColor: '#e85661' }}>Cari</Button>
-                            </Form>
+                            </Form> */}
 
 
                             {

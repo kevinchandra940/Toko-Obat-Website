@@ -1,121 +1,209 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem, CardText, Card, Table, Button, Spinner } from 'reactstrap';
+import { Table, Button } from 'reactstrap';
 
+//import actions
+import {
+  getCart,
+  actionPlus,
+  actionMinus,
+  editCart,
+  checkOutAction,
+  deleteAction,
+  getCartKimia,
+  deleteActionKimia
+} from '../actions'
 
-
-const Cartpage = (props) => {
-    const [dropdownOpen, setDropdownOpen] = useState(false);
-    const [dropdownOpen1, setDropdownOpen1] = useState(false);
-    const [ready, setReady] = useState(false);
-
-
-    const toggle = () => setDropdownOpen(prevState => !prevState);
-    const toggle1 = () => setDropdownOpen1(prevState => !prevState);
-
-    setTimeout(() => setReady(true), 1500)
-    if (ready) {
-        return (
-            <div style={{ marginBottom: '20vh' }}>
-                <CardText style={{ marginLeft: '38.5vw', marginTop: '0vh', marginBottom: '8vh' }}>
-                    <h1 style={{ marginLeft: '4.5vw', color: '#e85661' }}>Keranjang</h1>
-                </CardText>
-                <div style={{ display: 'flex' }}>
-                    <h2 style={{ marginLeft: '20VW', color: '#39b4ea' }}>Obat</h2>
-                    <h2 style={{ marginLeft: '45VW', color: '#e85661' }}>Obat Rujukan</h2>
-                </div>
-                <div className="row" style={{ width: "100vw", }}>
-                    <Table style={{ color: '#39b4ea', marginRight: '2vw', width: '47vw', marginLeft: '2vw' }}>
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Nama Barang</th>
-                                <th>Kategori</th>
-                                <th>Harga</th>
-                                <th>Edit</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>Larry</td>
-                                <td>the Bird</td>
-                                <td>@twitter</td>
-                                <td></td>
-                            </tr>
-                        </tbody>
-                    </Table>
-                    <Table style={{ color: '#e85661', marginRight: '0vw', width: '48vw' }}>
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>First Name</th>
-                                <th>Last Name</th>
-                                <th>Username</th>
-                                <th>Edit</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>Larry</td>
-                                <td>the Bird</td>
-                                <td>@twitter</td>
-                                <td></td>
-                            </tr>
-                        </tbody>
-                    </Table>
-                </div>
-                <Link to='/checkout' style={{ textDecoration: 'none', color: 'black', width: '30vw' }}>
-                    <Button className="shadow  mb-5 " style={{ marginTop: '5vh', marginLeft: '30vw', width: '40vw', backgroundColor: '#e85661' }}>Checkout</Button>
-                </Link>
-            </div>
-        ); 
+class CartPage extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      selectedId: null,
+      quantity: 0,
+      total: null,
     }
-    else {
+  }
+
+  componentDidMount() {
+    this.props.getCart()
+    this.props.getCartKimia()
+  }
+
+  buttonEdit = (id) => {
+    this.setState({ selectedId: id })
+  }
+
+  buttonDelete = (id) => {
+    this.props.deleteAction(id, this.props.user_id)
+  };
+
+  buttonCancel = () => {
+    this.props.getCart()
+    this.setState({ selectedId: null })
+  }
+
+  buttonPlus = (index, id) => {
+    this.props.actionPlus(id)
+    this.setState({ selectedId: id })
+  }
+
+
+  buttonMinus = (index, id) => {
+    this.props.actionMinus(index)
+    this.setState({ selectedId: id })
+  }
+
+  buttonSave = (index) => {
+    console.log('ok')
+    const body = {
+      id: this.state.selectedId,
+      newQty: this.props.cart[index].qty,
+      total: this.props.cart[index].harga * this.props.cart[index].qty,
+    }
+    this.props.editCart(body)
+    this.props.getCart()
+    this.setState({ selectedId: null })
+  }
+
+  buttonCheckout = () => {
+    console.log('checkout')
+    this.props.checkOutAction(this.props.orderNumb)
+  }
+
+  deleteKimia = (id) => {
+    this.props.deleteActionKimia(id)
+  }
+
+  renderTableHead = () => {
+    return (
+
+      <thead style={{ width: "45vw", color: '#e85661' }} >
+        <tr>
+          <th>No</th>
+          <th>Nama Barang</th>
+          <th>Quantity</th>
+          <th>Harga</th>
+          <th>Total</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+
+    )
+  }
+
+  renderTableKimia = () => {
+    return (
+      <thead style={{ width: "45vw" }} >
+        <tr>
+          <th>No</th>
+          <th>Nama Barang</th>
+          <th>Total</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+
+    )
+  }
+
+  renderBodyKimia = () => {
+    return this.props.cart_kimia.map((item, index) => {
+      return (
+        <thead style={{ width: "40vw" }} >
+          <tr>
+            <th>{index + 1}</th>
+            <th>Obat Racik {index + 1} </th>
+            <th>{item.total}</th>
+            <th><Button onClick={() => this.deleteKimia(item.id)}>Delete</Button></th>
+          </tr>
+        </thead>
+      )
+    })
+  }
+
+  renderTableBody = () => {
+    return this.props.cart.map((item, index) => {
+      if (item.id === this.state.selectedId) {
         return (
-            <div style={{ marginLeft: '32vw', marginTop: '20vh', marginBottom: '40vh' }}>
-                <Spinner type="grow" color="primary" style={{ width: '10vh', height: '5vw' }} />
-                <Spinner type="grow" color="secondary" style={{ width: '10vh', height: '5vw' }} />
-                <Spinner type="grow" color="success" style={{ width: '10vh', height: '5vw' }} />
-                <Spinner type="grow" color="danger" style={{ width: '10vh', height: '5vw' }} />
-                <Spinner type="grow" color="warning" style={{ width: '10vh', height: '5vw' }} />
-                <Spinner type="grow" color="info" style={{ width: '10vh', height: '5vw' }} />
-                <Spinner type="grow" color="dark" style={{ width: '10vh', height: '5vw' }} />
-            </div>
+          <tbody >
+            <tr>
+              <th scope="row" key={item.id}>{item.id}</th>
+              <td>{item.nama}</td>
+              <td><Button onClick={() => this.buttonMinus(index, item.id)}>-</Button>
+                {item.qty}
+                <Button onClick={() => this.buttonPlus(index, item.id)}>+</Button></td>
+              <td>{item.harga}</td>
+              <td>{item.qty * item.harga}</td>
+              <td><Button onClick={() => this.buttonSave(index, item.id)}>OK</Button>
+                <Button onClick={this.buttonCancel}>CANCEL</Button></td>
+            </tr>
+          </tbody>
         )
+      } else {
+        return (
+          <tbody style={{ color: '#e85661' }}>
+            <tr>
+              <th scope="row" key={item.id}>{index + 1}</th>
+              <td>{item.nama}</td>
+              <td>{item.qty}</td>
+              <td>{item.harga}</td>
+              <td>{item.qty * item.harga}</td>
+              <td><Button onClick={() => this.buttonEdit(item.id)}>Edit</Button>
+                <Button onClick={() => this.buttonDelete(item.id)}>Delete</Button></td>
+            </tr>
+          </tbody>
+        )
+      }
+    })
+  }
 
-    }
+
+  render() {
+    console.log(this.props.cart_kimia)
+    return (
+      <div style={{ marginBottom: '20vh' }}>
+        <h1 style={{ color: '#e85661', marginLeft: '44.5vw', marginBottom: '10vh' }}>Keranjang</h1>
+        <div style={{display:'flex'}}>
+          <h1 style={{marginLeft:'20vw', color: '#e85661', marginBottom:'3vh'}}>Obat Jadi</h1>
+          <h1 style={{marginLeft:'35vw', color: '#39b4ea'}}>Obat Racik</h1>
+        </div>
+        <div style={{ display: "flex", width: '90vw' }}>
+          <Table className="col-6" style={{ color: '#e85661', width: '45vw', marginLeft: '4vw' }}>
+            {this.renderTableHead()}
+            {this.renderTableBody()}
+          </Table>
+          <Table className="col-6" style={{ color: '#39b4ea', width: '45vw', marginLeft: '1vw' }}>
+            {this.renderTableKimia()}
+            {this.renderBodyKimia()}
+          </Table>
+        </div>
+        <h2 style={{ color: '#e85661', marginLeft: '20vw' }}>Total : {this.props.total}</h2>
+        <Link to="/checkout">
+          <Button onClick={this.buttonCheckout} style={{ backgroundColor: '#e85661', width: '20vw', marginLeft: '40vw', borderColor: '#e85661' }}>Proses</Button>
+        </Link>
+      </div>
+    );
+  }
 }
 
-// background: 'linear-gradient(90deg, rgba(57,180,234,1) 35%, rgba(232,86,97,1) 82%)'
+const mapStateToProps = (state) => {
+  return {
+    cart: state.orderReducer.cart,
+    total: state.orderReducer.total,
+    orderNumb: state.orderReducer.order_number,
+    user_id: state.userReducer.id,
+    cart_kimia: state.orderReducer.cart_kimia
+  }
+}
 
-export default Cartpage;
+export default connect(mapStateToProps,
+  {
+    getCart,
+    actionPlus,
+    actionMinus,
+    editCart,
+    checkOutAction,
+    deleteAction,
+    getCartKimia,
+    deleteActionKimia
+  })(CartPage);
