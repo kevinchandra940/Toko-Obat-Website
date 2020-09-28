@@ -10,7 +10,7 @@ import {
   Label,
   Spinner
 } from 'reactstrap';
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 
 import { getProductKimia, getAntibiotik, cartKimia } from '../actions'
 
@@ -18,7 +18,7 @@ class Drugspage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      jenis: "",
+      jenis: 1,
       netto: 0,
       tempCart: [],
       selectedId: null,
@@ -105,6 +105,7 @@ class Drugspage extends React.Component {
   }
 
   selectJenis = () => {
+    // this.setState{jenis : item.jenis}
     return this.props.product.map((item, index) => {
       return (
         <option value={item.jenis}>{item.jenis_kimia}</option>
@@ -155,7 +156,7 @@ class Drugspage extends React.Component {
               <div style={{ display: 'flex', width: '50vw' }}>
                 <FormGroup style={{ color: '#e85661', marginTop: '5vh', marginLeft: '1vw' }}>
                   <h3 >Jenis Obat</h3>
-                  <Input style={{ width: '10vw', color: '#e85661' }} type="select" name="jenis" innerRef={(jenis) => this.jenis = jenis} onChange={() => this.selectButton()}>
+                  <Input defaultValue={0} style={{ width: '10vw', color: '#e85661' }} type="select" name="jenis" innerRef={(jenis) => this.jenis = jenis} onChange={() => this.selectButton()}>
                     {this.selectJenis()}
                   </Input>
                 </FormGroup>

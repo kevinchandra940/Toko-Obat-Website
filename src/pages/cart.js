@@ -44,7 +44,7 @@ class CartPage extends React.Component {
   }
 
   buttonPlus = (index, id) => {
-    this.props.actionPlus(id)
+    this.props.actionPlus(index)
     this.setState({ selectedId: id })
   }
 
@@ -160,7 +160,7 @@ class CartPage extends React.Component {
 
   render() {
 
-    setTimeout(() => this.setState({ ready: true }), 3000)
+    setTimeout(() => this.setState({ ready: true }), 2000)
     if (this.state.ready) {
 
 
@@ -182,7 +182,7 @@ class CartPage extends React.Component {
               {this.renderBodyKimia()}
             </Table>
           </div>
-          <h2 style={{ color: '#e85661', marginLeft: '20vw', marginTop:'10vh', marginBottom:'5vh' }}>Total : Rp.{this.props.total}</h2>
+          <h2 style={{ color: '#e85661', marginLeft: '20vw', marginTop:'10vh', marginBottom:'5vh' }}>Total : Rp.{this.props.total ? this.props.total.toLocaleString():0}</h2>
           <Link to="/checkout">
             <Button onClick={this.buttonCheckout} style={{ backgroundColor: '#e85661', width: '20vw', marginLeft: '40vw', borderColor: '#e85661' }}>Proses</Button>
           </Link>

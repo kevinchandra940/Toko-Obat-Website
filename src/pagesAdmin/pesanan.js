@@ -75,7 +75,7 @@ class Pesananpage extends React.Component {
                                 <Button  style={{backgroundColor:'#e85661', borderColor:'#e85661'}} onClick={() => this.buttonReject(item.id)}>Tolak</Button>
                             </tr>
                         </tbody>
-                    </Table>
+                    </Table> 
                 )
             } else {
                 return (

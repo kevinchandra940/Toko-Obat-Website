@@ -36,7 +36,7 @@ class RiwayatTransaksipage extends React.Component {
                         <th scope="row" key={item.id}>{item.id}</th>
                         <td>{item.order_number}</td>
                         <td>{item.type_payment}</td>
-                        <td>Rp.{item.total}</td>
+                        <td>Rp.{item.total.toLocaleString()}</td>
                         <td>{item.status_payment}</td>
                     </tr>
                 </tbody>

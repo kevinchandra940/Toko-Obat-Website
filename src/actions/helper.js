@@ -38,6 +38,8 @@ export const REJECTED = 'REJECTED'
 export const USER_HISTORY = 'USER_HISTORY'
 //admin
 export const GET_HISTORY = "GET_HISTORY"
+export const HISTORY_RACIK = "HISTORY_RACIK"
+export const HISTORY_JADI = "HISTORY_JADI"
 
 //productkimia
 export const GET_KIMIA = "GET_KIMIA"

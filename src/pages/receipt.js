@@ -103,7 +103,7 @@ class Receiptpage extends React.Component {
                             </form>
                         </div>
                     <Link to='/riwayattransaksi'>
-                        <Button style={{ width: '30vw', borderColor:'#e85661',marginLeft: '35vw', marginTop: '20vh', backgroundColor: '#e85661' }}>Selesai</Button>
+                        <Button style={{ width: '30vw', borderColor:'#e85661',marginLeft: '35vw', marginTop: '10vh', backgroundColor: '#e85661' }}>Selesai</Button>
                     </Link>
                 </div>
             </div>

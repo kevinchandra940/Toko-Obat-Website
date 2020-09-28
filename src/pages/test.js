@@ -1,121 +1,135 @@
 import React from 'react';
-import { Table, Button} from 'reactstrap'
-import { TransactionHistory, approvePayment, rejectPayment } from '../actions'
+import { Table } from 'reactstrap'
 import { connect } from 'react-redux'
+
+import { getHistoryRacik, getHistoryJadi } from '../actions'
 
 class Testpage extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {  
-          modal: false,
-          collapse: false,
-          selectedId: null
+        this.state = {
+
         }
     }
 
     componentDidMount() {
-        this.props.TransactionHistory()
+        this.props.getHistoryRacik()
+        this.props.getHistoryJadi()
     }
 
-    buttonAction = (id) => {
-        this.setState({ selectedId: id })
-    }
-
-    buttonAprrove = async(id) => {
-        await this.props.approvePayment(id, this.props.history)
-        await this.props.TransactionHistory()
-        await this.setState({selectedId : null})
-    }
-    buttonReject = async(id) => {
-        await this.props.rejectPayment(id)
-        await this.props.TransactionHistory()
-        await this.setState({selectedId : null})
-    }
-
-    modal = () => {
-        this.setState({ modal: !this.state.modal })
-    }
-    collapse = () => {
-        this.setState({ collapse: !this.state.collapse })
-    }
-    renderTableHead = () => {
+    renderHeadKimia = () => {
         return (
-            <Table style={{color:'#e85661', width:'90vw', marginLeft:'5vw'}}>
-                <thead>
-                    <tr>
-                        <th>No</th>
-                        <th>Order Number</th>
-                        <th>Payment Type</th>
-                        <th>Total</th>
-                        <th>Status Payment</th>
-                        <th>Bukti Transfer</th>
-                        <th>Aksi</th>
-                    </tr>
-                </thead>
-            </Table>
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>
+                        <h4>Order Number</h4>
+                    </th>
+                    <th>
+                        <h4>Pembelian</h4>
+                        <h6>Obat Racik</h6>
+                    </th>
+                    <th>
+                        <h4>Quantity</h4>
+                    </th>
+                    <th>
+                        <h4>Total</h4>
+                    </th>
+                    <th>
+                        <h4>Status</h4>
+                    </th>
+                </tr>
+            </thead>
         )
     }
 
-    renderTableBody = () => {
-        return this.props.history.map((item, index) => {
-            if (item.id === this.state.selectedId) {
-                return (
-                    <Table  style={{color:'#e85661', width:'90vw', marginLeft:'5vw'}} key={index}>
-                        <tbody>
-                            <tr>
-                                <th scope="row">{item.id}</th>
-                                <td>{item.order_number}</td>
-                                <td>{item.type_payment}</td>
-                                <td>{item.total}</td>
-                                <td>{item.status_payment}</td>
-                                {
-                                    !item.bukti_transfer ? <td>BELUM BAYAR</td> : <td>{item.bukti_transfer}</td>
-                                }
-                                <Button style={{backgroundColor:'#e85661', borderColor:'#e85661', marginRight:'0.5vw'}} onClick={() => this.buttonAprrove(item.id)}>Setuju</Button>
-                                <Button  style={{backgroundColor:'#e85661', borderColor:'#e85661'}} onClick={() => this.buttonReject(item.id)}>Tolak</Button>
-                            </tr>
-                        </tbody>
-                    </Table>
-                )
-            } else {
-                return (
-                    <Table style={{color:'#e85661', width:'90vw', marginLeft:'5vw'}} key={index}>
-                        <tbody > 
-                            <tr >
-                                <th scope="row">{item.id}</th>
-                                <td>{item.order_number}</td>
-                                <td>{item.type_payment}</td>
-                                <td>{item.total}</td>
-                                <td>{item.status_payment}</td>
-                                {
-                                    !item.bukti_transfer ? <td>BELUM BAYAR</td> : <td>{item.bukti_transfer}</td>
-                                }
-                                <Button style={{backgroundColor:'#e85661', borderColor:'#e85661', width:'5vw',}} onClick={() => this.buttonAction(item.id)}>Aksi</Button>
-                            </tr>
-                        </tbody>
-                    </Table>
-                )
-            }  
-    })
-}
+    renderBodyKimia = () => {
+        return this.props.data.map((item, index) => {
+            return (
+                <tbody>
+                    <tr>
+                        <th scope="row" key={item.id}>{index + 1}</th>
+                        <td>{item.order_number}</td>
+                        <td>{item.nama_kimia}</td>
+                        <td>{item.qty}</td>
+                        <td>{item.total}</td>
+                        <td>{item.status_order}</td>
+                    </tr>
+                </tbody>
+            )
+        })
+    }
 
-render() {
-    console.log('history', this.props.history)
-    return (
-        <div style={{marginBottom:'20vh'}}>
-            <h1 style={{marginLeft:'45vw', marginBottom:'10vh', color:'#e85661'}}>Pesanan</h1>
-            {this.renderTableHead()}
-            {this.renderTableBody()}
-        </div>
-    );
-}
-}
 
-const mapStateToProps = (state) => {
-    return {
-        history: state.adminReducer.trans_history,
-        qty:state.adminReducer.trans_history
+    renderHeadJadi = () => {
+        return (
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>
+                        <h4>Order Number</h4>
+                    </th>
+                    <th>
+                        <h4>Pembelian</h4>
+                        <h6>Obat Jadi</h6>
+                    </th>
+                    <th>
+                        <h4>Quantity</h4>
+                    </th>
+                    <th>
+                        <h4>Total</h4>
+                    </th>
+                    <th>
+                        <h4>Status</h4>
+                    </th>
+                </tr>
+            </thead>
+        )
+    }
+
+    renderBodyJadi = () => {
+        return this.props.dataJadi.map((item, index) => {
+            return (
+                <tbody>
+                    <tr>
+                        <th scope="row" key={item.id}>{index + 1}</th>
+                        <td>{item.order_number}</td>
+                        <td>{item.nama}</td>
+                        <td>{item.qty}</td>
+                        <td>{item.total}</td>
+                        <td>{item.status_order}</td>
+                    </tr>
+                </tbody>
+            )
+        })
+    }
+
+    render() {
+        console.log(this.props.dataJadi)
+        return (
+            <div>
+                <h1 style={{ marginLeft: '10px', color: '#e85661', marginBottom: '10vh', textAlign:"center" }}>Riwayat Transaksi</h1>
+                <div style={{ marginBottom: '20vh', display: "flex"}} >
+                    <Table style={{ color: '#39b4ea', width:'20vw', marginLeft:'1vw', marginRight:'1vw' }}>
+                        {this.renderHeadKimia()}
+                        {this.renderBodyKimia()}
+                    </Table>
+                    <Table style={{ color: '#e85661', width:'20vw', marginRight:'10vw'}}>
+                        {this.renderHeadJadi()}
+                        {this.renderBodyJadi()}
+                    </Table>
+                </div>
+            </div>
+        );
     }
 }
 
-export default connect(mapStateToProps, { TransactionHistory, approvePayment, rejectPayment })(Testpage);
+
+const mapStateToProps = (state) => {
+    return {
+        data: state.adminReducer.historyRacik,
+        dataJadi: state.adminReducer.historyJadi
+    }
+}
+
+export default connect(mapStateToProps, { getHistoryRacik, getHistoryJadi })(Testpage);

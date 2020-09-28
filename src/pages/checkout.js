@@ -79,7 +79,7 @@ class Checkoutpage extends React.Component {
             <Toast style={{ marginTop: '0vh', marginRight: '5vw',  }}>
                     <ToastBody style={{ fontSize: '25px', alignItems: 'center', backgroundColor:'white', width:'40vw' }}>
                       
-                <h2 style={{ marginTop: '0vh', color:'#39b4ea'}}>SubTotal : Rp.{this.props.total} </h2>
+                <h2 style={{ marginTop: '0vh', color:'#39b4ea'}}>SubTotal : Rp.{this.props.total ? this.props.total.toLocaleString():0} </h2>
                     </ToastBody>
                 </Toast>
             </div>

@@ -69,11 +69,11 @@ class Navbarcomponent extends React.Component {
                                     <h3>Berita</h3>
                                 </Link>
                             </NavItem>
-                            <NavItem style={{ textDecoration: 'none', color: 'black', marginLeft: '2vw', marginRight: '2vw' }}>
+                            {/* <NavItem style={{ textDecoration: 'none', color: 'black', marginLeft: '2vw', marginRight: '2vw' }}>
                                 <Link to='/test' style={{ color: '#e85661', textDecoration: 'none' }}>
                                     <h3>TEST PAGE</h3>
                                 </Link>
-                            </NavItem>
+                            </NavItem> */}
 
 
                             {/* <Form inline style={{ marginLeft: '5vw' }}>
@@ -130,7 +130,7 @@ class Navbarcomponent extends React.Component {
 
                                     :
 
-                                    <UncontrolledDropdown nav inNavbar style={{ marginLeft: '5vw' }}>
+                                    <UncontrolledDropdown nav inNavbar style={{ marginLeft: '20vw' }}>
                                         <DropdownToggle nav caret style={{ borderColor: 'black', borderRadius: '20px', width: '5vw' }}>
 
                                             <h5 style={{ color: '#e85661' }}>Masuk</h5>

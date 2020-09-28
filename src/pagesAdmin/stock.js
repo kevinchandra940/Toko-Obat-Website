@@ -62,6 +62,7 @@ class Stockpage extends React.Component {
                     <tbody>
                         <tr>
                             <th scope="row">{item.id}</th>
+                            <td>{item.jenis_kimia}</td>
                             <td>{item.nama_kimia}</td>
                             <td><Input type="text" name="botol" placeholder="masukan jumlah stok" innerRef={(botol) => this.botol = botol} style={{borderColor:'#e85661'}} /></td>
                             <td>{item.sisa_stock}</td>
@@ -76,6 +77,7 @@ class Stockpage extends React.Component {
                     <tbody>
                         <tr>
                             <th scope="row">{item.id}</th>
+                            <td>{item.jenis_kimia}</td>
                             <td>{item.nama_kimia}</td>
                             <td>{item.stock} Botol {item.sisa_stock} ML</td>
                             <td><Button onClick={() => this.handleAdd(item.id)} style={{backgroundColor:'#e85661', borderColor:'#e85661'}}>Tambah</Button></td>

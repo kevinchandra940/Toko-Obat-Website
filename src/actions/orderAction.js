@@ -39,10 +39,15 @@ export const getCart = () => {
 export const editCart = (body) => {
     return async(dispatch) => {
         try {
+            dispatch({type : CART_START})
             console.log('bod', body.id)
-            const res = await Axios.patch(URL + '/edit/' + body.id, body)
-            console.log('edit : ', res.data)
+            await Axios.patch(URL + '/edit/' + body.id, body)
             dispatch({type : EDIT_CART})
+
+            const res = await Axios.get(URL + '/cart/' + localStorage.getItem('id'))
+            console.log('cart:', res.data)
+            dispatch({type : GET_CART, payload : res.data})
+            dispatch({type : CART_END})
         } catch (err) {
             console.log(err ? err.response.data : err)
         }
@@ -99,9 +104,13 @@ export const deleteAction = (id, user_id) => {
 export const cartKimia = (body) => {
     return async(dispatch) => {
         try{
-            const res = await Axios.post(URL + '/kimiacart', body)
-            console.log(res.data)
+            const edit = await Axios.post(URL + '/kimiacart', body)
+            console.log(edit.data)
             dispatch({type : KIMIA_CART})
+
+            const res = await Axios.get(URL + '/kimiaker/' + localStorage.getItem('id'))
+            console.log('cart:', res.data)
+            dispatch({type : KERANJANG_KIMIA, payload : res.data})
         } catch (err) {
             console.log(err)
         }
