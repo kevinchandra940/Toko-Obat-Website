@@ -140,7 +140,7 @@ class Drugspage extends React.Component {
   }
 
   render() {
-    setTimeout(() => this.setState({ ready: true }), 100)
+    setTimeout(() => this.setState({ ready: true }), 1500)
     if (this.state.ready) {
       return (
         <div style={{ marginBottom: '40vh' }}>
