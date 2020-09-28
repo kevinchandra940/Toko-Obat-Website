@@ -35,7 +35,7 @@ export const MINUS = "MINUS"
 export const ADD_PAYMENT = "ADD_PAYMENT"
 export const APPROVE = 'APPROVE'
 export const REJECTED = 'REJECTED'
-
+export const USER_HISTORY = 'USER_HISTORY'
 //admin
 export const GET_HISTORY = "GET_HISTORY"
 

@@ -40,7 +40,7 @@ class Pesananpage extends React.Component {
     }
     renderTableHead = () => {
         return (
-            <Table dark>
+            <Table style={{color:'#e85661', width:'90vw', marginLeft:'5vw'}}>
                 <thead>
                     <tr>
                         <th>No</th>
@@ -49,7 +49,7 @@ class Pesananpage extends React.Component {
                         <th>Total</th>
                         <th>Status Payment</th>
                         <th>Bukti Transfer</th>
-                        <th>Actions</th>
+                        <th>Aksi</th>
                     </tr>
                 </thead>
             </Table>
@@ -60,7 +60,7 @@ class Pesananpage extends React.Component {
         return this.props.history.map((item, index) => {
             if (item.id === this.state.selectedId) {
                 return (
-                    <Table dark key={index}>
+                    <Table  style={{color:'#e85661', width:'90vw', marginLeft:'5vw'}} key={index}>
                         <tbody>
                             <tr>
                                 <th scope="row">{item.id}</th>
@@ -71,17 +71,17 @@ class Pesananpage extends React.Component {
                                 {
                                     !item.bukti_transfer ? <td>BELUM BAYAR</td> : <td>{item.bukti_transfer}</td>
                                 }
-                                <Button onClick={() => this.buttonAprrove(item.id)}>Approve</Button>
-                                <Button onClick={() => this.buttonReject(item.id)}>Reject</Button>
+                                <Button style={{backgroundColor:'#e85661', borderColor:'#e85661', marginRight:'0.5vw'}} onClick={() => this.buttonAprrove(item.id)}>Setuju</Button>
+                                <Button  style={{backgroundColor:'#e85661', borderColor:'#e85661'}} onClick={() => this.buttonReject(item.id)}>Tolak</Button>
                             </tr>
                         </tbody>
                     </Table>
                 )
             } else {
                 return (
-                    <Table dark key={index}>
-                        <tbody>
-                            <tr>
+                    <Table style={{color:'#e85661', width:'90vw', marginLeft:'5vw'}} key={index}>
+                        <tbody > 
+                            <tr >
                                 <th scope="row">{item.id}</th>
                                 <td>{item.order_number}</td>
                                 <td>{item.type_payment}</td>
@@ -90,7 +90,7 @@ class Pesananpage extends React.Component {
                                 {
                                     !item.bukti_transfer ? <td>BELUM BAYAR</td> : <td>{item.bukti_transfer}</td>
                                 }
-                                <Button onClick={() => this.buttonAction(item.id)}>Action</Button>
+                                <Button style={{backgroundColor:'#e85661', borderColor:'#e85661', width:'5vw',}} onClick={() => this.buttonAction(item.id)}>Aksi</Button>
                             </tr>
                         </tbody>
                     </Table>
@@ -102,8 +102,8 @@ class Pesananpage extends React.Component {
 render() {
     console.log('history', this.props.history)
     return (
-        <div>
-            <h1>INI HALAMAN TRANSAKSI</h1>
+        <div style={{marginBottom:'20vh'}}>
+            <h1 style={{marginLeft:'45vw', marginBottom:'10vh', color:'#e85661'}}>Pesanan</h1>
             {this.renderTableHead()}
             {this.renderTableBody()}
         </div>

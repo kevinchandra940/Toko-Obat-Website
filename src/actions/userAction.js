@@ -1,8 +1,8 @@
 import Axios from 'axios'
-import { URL, LOGIN , REGISTER, LOGOUT } from './helper'
+import { URL, LOGIN, REGISTER, LOGOUT, USER_HISTORY } from './helper'
 
 export const LoginAction = (body) => {
-    return async(dispatch) => {
+    return async (dispatch) => {
         try {
             const res = await Axios.post(URL + '/login', body)
 
@@ -10,19 +10,19 @@ export const LoginAction = (body) => {
             localStorage.setItem('id', res.data.id)
             localStorage.setItem('token', res.data.token)
 
-            dispatch({type : LOGIN, payload : res.data})
+            dispatch({ type: LOGIN, payload: res.data })
 
         } catch (err) {
-            console.log(err? err.response.data : err)
+            console.log(err ? err.response.data : err)
         }
     }
 }
 
 export const RegisterAction = (body) => {
-    return async(dispatch) => {
+    return async (dispatch) => {
         try {
             const res = await Axios.post(URL + '/register', body)
-            dispatch({type : REGISTER, payload : res.data})
+            dispatch({ type: REGISTER, payload: res.data })
 
         } catch (err) {
             console.log(err ? err.response.data : err)
@@ -32,7 +32,7 @@ export const RegisterAction = (body) => {
 
 export const LogoutAction = () => {
     return {
-        type : LOGOUT
+        type: LOGOUT
     }
 }
 
@@ -44,12 +44,23 @@ export const KeepLogin = () => {
             const res = await Axios.post(URL + '/users/keeplogin', { token })
             console.log(res.data)
 
-            dispatch({ type : LOGIN, payload : res.data })
+            dispatch({ type: LOGIN, payload: res.data })
         } catch (err) {
             localStorage.removeItem('id')
             localStorage.removeItem('token')
-            dispatch({ type : LOGOUT })
-            console.log(err ? 'ERROR : ' + err.response.data : err )
+            dispatch({ type: LOGOUT })
+            console.log(err ? 'ERROR : ' + err.response.data : err)
+        }
+    }
+
+}
+export const UserHistory = () => {
+    return async (dispatch) => {
+        try {
+            const res = await Axios.get(URL + '/user/history/' + localStorage.getItem('id'))
+            dispatch({ type: USER_HISTORY, payload: res.data })
+        } catch (err) {
+            console.log(err ? err.response.data : err)
         }
     }
 }

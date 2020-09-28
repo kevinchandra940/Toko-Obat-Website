@@ -66,20 +66,20 @@ class Drugspage extends React.Component {
     return this.state.tempCart.map((item, index) => {
       let pIndex = this.props.product.findIndex(value => item.obat == value.id)
       let tIndex = this.props.product.findIndex(value => item.satuan == value.id)
-        return (
-          <tbody>
-            <tr>
-              <th scope="row">{index + 1}</th>
-              <td>{item.jenis}</td>
-              <td>{this.props.product[pIndex].nama_kimia}</td>
-              <td>{this.props.product[tIndex].satuan}</td>
-              <td>{item.total}</td>
-              <td>
-                <Button onClick={() => this.deleteButton(index)}>DELETE</Button>
-              </td>
-            </tr>
-          </tbody>
-        )
+      return (
+        <tbody>
+          <tr>
+            <th scope="row">{index + 1}</th>
+            <td>{item.jenis}</td>
+            <td>{this.props.product[pIndex].nama_kimia}</td>
+            <td>{this.props.product[tIndex].satuan}</td>
+            <td>{item.total}</td>
+            <td>
+              <Button style={{ backgroundColor: '#e85661', borderColor: '#e85661' }} onClick={() => this.deleteButton(index)}>Hapus</Button>
+            </td>
+          </tr>
+        </tbody>
+      )
     })
   }
 
@@ -140,7 +140,7 @@ class Drugspage extends React.Component {
   }
 
   render() {
-    setTimeout(() => this.setState({ ready: true }), 1500)
+    setTimeout(() => this.setState({ ready: true }), 100)
     if (this.state.ready) {
       return (
         <div style={{ marginBottom: '40vh' }}>
@@ -152,44 +152,53 @@ class Drugspage extends React.Component {
           <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '20vh' }}>
 
             <Card style={{ width: '45vw' }}>
-              <h3 style={{ color: '#e85661' }}>Jenis Obat</h3>
-              <Input type="select" name="jenis" innerRef={(jenis) => this.jenis = jenis} onChange={() => this.selectButton()}>
-                {this.selectJenis()}
-              </Input>
-              <h3 style={{ color: '#e85661' }}>Nama Obat</h3>
-              <Input type="select" name="obat" innerRef={(obat) => this.obat = obat} onChange={() => this.selectButton()}>
-                {this.selectObat()}
-              </Input>
-              <div style={{ display: 'flex' }}>
-                <FormGroup style={{ width: '10vw', marginTop: '15vh', marginLeft: '1vw' }}>
-                  <h3>Takaran</h3>
-                  <Input type="text" name="inputTakaran" placeholder="..." innerRef={(takaran) => this.takaran = takaran} />
+              <div style={{ display: 'flex', width: '50vw' }}>
+                <FormGroup style={{ color: '#e85661', marginTop: '5vh', marginLeft: '1vw' }}>
+                  <h3 >Jenis Obat</h3>
+                  <Input style={{ width: '10vw', color: '#e85661' }} type="select" name="jenis" innerRef={(jenis) => this.jenis = jenis} onChange={() => this.selectButton()}>
+                    {this.selectJenis()}
+                  </Input>
                 </FormGroup>
-                <h3>NETTO</h3>
-                <Input type="select" name="takaran" innerRef={(netto) => this.netto = netto} onChange={() => this.selectNetto()}>
-                  {this.selectTakaran()}
-                </Input>
+                <FormGroup style={{ marginLeft: '5vw', marginTop: '5vh' }}>
+                  <h3 style={{ color: '#e85661' }}>Nama Obat</h3>
+                  <Input style={{ width: '10vw', color: '#e85661', }} type="select" name="obat" innerRef={(obat) => this.obat = obat} onChange={() => this.selectButton()}>
+                    {this.selectObat()}
+                  </Input>
+                </FormGroup>
+              </div>
+              <div style={{ display: 'flex' }}>
+                <FormGroup style={{ width: '10vw', marginTop: '5vh', marginLeft: '1vw', color: '#e85661' }}>
+                  <h3>Takaran</h3>
+                  <Input style={{ width: '10vw', color: '#e85661', }} type="text" name="inputTakaran" placeholder="..." innerRef={(takaran) => this.takaran = takaran} />
+                </FormGroup>
+                <FormGroup style={{ marginTop: '5vh', marginLeft: '5vw', color: '#e85661' }}>
+                  <h3>NETTO</h3>
+                  <Input style={{ width: '10vw', color: '#e85661', }} type="select" name="takaran" innerRef={(netto) => this.netto = netto} onChange={() => this.selectNetto()}>
+                    {this.selectTakaran()}
+                  </Input>
+                </FormGroup>
               </div>
               <FormGroup style={{ width: '10vw', marginTop: '5vh', marginLeft: '1vw' }}>
-              <Label for="exampleEmail">Total : ex. 12x minum</Label>
-              <Input type="email" name="dosis" placeholder="dosis" innerRef={(dosis) => this.dosis = dosis} />
-            </FormGroup>
+                <Label style={{color:'#e85661'}} for="exampleEmail">contoh : 12x minum</Label>
+                <Input type="email" name="dosis" placeholder="dosis" innerRef={(dosis) => this.dosis = dosis} />
+              </FormGroup>
 
-            <Button style={{ marginTop: '5vh', marginBottom: '5vh', backgroundColor: 'black', width: '30vw', marginLeft: '5vw', borderRadius: '60px' }}
-              onClick={this.buttonAdd}>Tambah</Button>
-          </Card >
+              <Button style={{ marginTop: '5vh', marginBottom: '5vh', backgroundColor: '#e85661', width: '30vw', marginLeft: '5vw', borderRadius: '60px', borderColor: '#e85661' }}
+                onClick={this.buttonAdd}>Tambah</Button>
 
-          <Card style={{ width: '45vw' }}>
-            <Table dark style={{ width: '40vw', backgroundColor: 'black', color: 'white', marginLeft: '2.5vw' }}>
-              {this.renderTableHeader()}
-              {this.renderTableBody()}
-            </Table>
-         
-            <Button style={{ marginLeft: '8vw', width: '30vw', backgroundColor: 'black', borderRadius: '60px', marginTop: '15.5vh' }}
-              onClick={this.buttonProses}>Proses</Button>
-    
+            </Card >
 
-          </Card>
+            <Card style={{ width: '45vw' }}>
+              <Table style={{ width: '40vw', color: '#e85661', marginLeft: '2.5vw', marginTop: '10vh' }}>
+                {this.renderTableHeader()}
+                {this.renderTableBody()}
+              </Table>
+              <Link to='/keranjang'>
+                <Button style={{ marginLeft: '8vw', width: '30vw', backgroundColor: '#e85661', borderRadius: '60px', marginTop: '15.5vh', borderColor: '#e85661' }}
+                  onClick={this.buttonProses}>Proses</Button>
+              </Link>
+
+            </Card>
           </div>
         </div>
       );

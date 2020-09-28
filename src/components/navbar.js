@@ -52,14 +52,14 @@ class Navbarcomponent extends React.Component {
 
 
                         <Nav className="mr-auto" navbar style={{ alignSelf: 'center', justifyContent: 'center', justifyItems: 'center', alignItems: 'center', justifySelf: 'center' }}>
-                            <NavItem style={{ textDecoration: 'none', marginLeft: '2vw', marginRight: '2vw' }}>
+                            <NavItem style={{ textDecoration: 'none', marginLeft: '2vw', marginRight: '5vw' }}>
                                 <Link to='/beliobat' style={{ color: '#e85661', textDecoration: 'none' }} >
                                     <h3 >
                                         Beli Obat
                                 </h3>
                                 </Link>
                             </NavItem>
-                            <NavItem style={{ textDecoration: 'none', color: 'black', marginLeft: '2vw', marginRight: '2vw' }}>
+                            <NavItem style={{ textDecoration: 'none', color: 'black', marginLeft: '2vw', marginRight: '5vw' }}>
                                 <Link to='/obatracik' style={{ color: '#e85661', textDecoration: 'none' }}>
                                     <h3>Obat Racik</h3>
                                 </Link>
@@ -69,11 +69,11 @@ class Navbarcomponent extends React.Component {
                                     <h3>Berita</h3>
                                 </Link>
                             </NavItem>
-                            {/* <NavItem style={{ textDecoration: 'none', color: 'black', marginLeft: '2vw', marginRight: '2vw' }}>
+                            <NavItem style={{ textDecoration: 'none', color: 'black', marginLeft: '2vw', marginRight: '2vw' }}>
                                 <Link to='/test' style={{ color: '#e85661', textDecoration: 'none' }}>
                                     <h3>TEST PAGE</h3>
                                 </Link>
-                            </NavItem> */}
+                            </NavItem>
 
 
                             {/* <Form inline style={{ marginLeft: '5vw' }}>
@@ -86,7 +86,7 @@ class Navbarcomponent extends React.Component {
 
                                 this.props.username ?
 
-                                    <UncontrolledDropdown nav inNavbar style={{ marginLeft: '5vw' }}>
+                                    <UncontrolledDropdown nav inNavbar style={{ marginLeft: '20vw' }}>
                                         <DropdownToggle nav caret>
                                             <h4 style={{ backgroundColor: 'none', color: '#e85661' }}>{this.props.username.charAt(0).toUpperCase()}</h4>
                                         </DropdownToggle>

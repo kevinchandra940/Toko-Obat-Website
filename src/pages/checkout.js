@@ -58,25 +58,30 @@ class Checkoutpage extends React.Component {
             </CardText>
             <div className="p-3 bg-danger rounded" style={{ marginTop: '10vh', height: '20vh', display: 'flex' }}>
                 <Toast style={{ marginTop: '4vh', marginRight: '5vw' }}>
-                    <ToastBody style={{ fontSize: '25px', alignItems: 'center' }}>
-                        <h4 style={{color:'black', marginTop:'1vh'}}>Pilih metode pembayaran</h4>
+                    <ToastBody style={{ fontSize: '25px', alignItems: 'center', backgroundColor:'white' }}>
+                        <h4 style={{color:'#e85661', marginTop:'1vh'}}>Pilih metode pembayaran</h4>
                     </ToastBody>
                 </Toast>
-                <Button style={{ backgroundColor: 'white', height: '10vh', marginLeft: '0vw', marginTop: '3.5vh' }} onClick={this.buttonBca}>
+                <Button style={{ backgroundColor: 'white',borderColor:'white', height: '10vh', marginLeft: '0vw', marginTop: '3.5vh' }} onClick={this.buttonBca}>
                     <CardImg src={BCA} style={{ width: '8vw', height: '5vh' }} />
                 </Button>
-                <Button style={{ backgroundColor: 'white', height: '10vh', marginLeft: '2vw', marginTop: '3.5vh' }} onClick={this.buttonMandiri}>
+                <Button style={{ backgroundColor: 'white',borderColor:'white', height: '10vh', marginLeft: '2vw', marginTop: '3.5vh' }} onClick={this.buttonMandiri}>
                     <CardImg src={Mandiri} style={{ width: '8vw', height: '8.5vh' }} />
                 </Button>
-                <Button style={{ backgroundColor: 'white', height: '10vh', marginLeft: '2vw', marginTop: '3.5vh' }} onClick={this.buttonOvo}>
+                <Button style={{ backgroundColor: 'white',borderColor:'white', height: '10vh', marginLeft: '2vw', marginTop: '3.5vh' }} onClick={this.buttonOvo}>
                     <CardImg src={OVO} style={{ width: '6vw', height: '7vh', }} />
                 </Button>
-                <Button style={{ backgroundColor: 'white', height: '10vh', marginLeft: '2vw', marginTop: '3.5vh' }} onClick={this.buttonDana}>
+                <Button style={{ backgroundColor: 'white',borderColor:'white', height: '10vh', marginLeft: '2vw', marginTop: '3.5vh' }} onClick={this.buttonDana}>
                     <CardImg src={DANA} style={{ width: '9vw', height: '6vh', }} />
                 </Button>
             </div>
-            <div className="p-3 bg-info my-2 rounded" style={{ marginTop: '10vh', height: '15vh', display: 'flex',color: 'white' }}>
-                <h1 style={{ marginTop: '2vh'}}>Total : {this.props.total} </h1>
+            <div className="p-3  my-2 rounded" style={{ marginTop: '10vh', height: '15vh', display: 'flex',backgroundColor: '#39b4ea' }}>
+            <Toast style={{ marginTop: '0vh', marginRight: '5vw',  }}>
+                    <ToastBody style={{ fontSize: '25px', alignItems: 'center', backgroundColor:'white', width:'40vw' }}>
+                      
+                <h1 style={{ marginTop: '0vh', color:'#39b4ea'}}>SubTotal : Rp.{this.props.total} </h1>
+                    </ToastBody>
+                </Toast>
             </div>
             <Link to='/resi'>
             <Button
