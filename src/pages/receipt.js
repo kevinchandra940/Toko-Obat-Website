@@ -22,7 +22,7 @@ import { RegisterAction } from '../actions'
 import { getProfile, URL_IMG, editProfile, upload } from '../actions'
 
 import { getCart } from '../actions'
-import avatar from '../assets/no-profile.jpg'
+import avatar from '../assets/resiiii.jpg'
 
 class Receiptpage extends React.Component {
     constructor(props) {
@@ -67,12 +67,12 @@ class Receiptpage extends React.Component {
                 <div className="button-profile" style={{marginLeft:'40vw'}}>
                             <form encType="multipart/form-data">
 
-                                <CardImg src={image ? URL_IMG + image : avatar} alt="Card image cap" style={{ width: '20vw', height: '40vh', borderRadius: '1000px', marginTop: '8vh' }} >
+                                <CardImg src={image ? URL_IMG + image : avatar} alt="Card image cap" style={{ width: '20vw', height: '40vh', borderRadius: '10px', marginTop: '8vh', color:'#e85661' }} >
                                 </CardImg>
                                 <div>
 
 
-                                    <Button onClick={this.collapse} style={{ marginTop: '5vh', marginLeft: '5vw', backgroundColor: '#e85661', borderColor: '#e85661' }}>Upload</Button>
+                                    <Button onClick={this.collapse} style={{ marginTop: '5vh', marginLeft: '7.5vw', backgroundColor: '#e85661', borderColor: '#e85661' }}>Upload</Button>
                                     <Collapse isOpen={this.state.collapse} style={{ width: '20vw' }}>
                                         <Card>
                                             <CardBody>
