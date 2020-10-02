@@ -9,6 +9,18 @@
 ![Screenshot (232)](https://user-images.githubusercontent.com/66938135/94887476-98d05280-04a0-11eb-8a11-6aeef0d38c92.png)
 ![Screenshot (233)](https://user-images.githubusercontent.com/66938135/94887510-adace600-04a0-11eb-9338-f7b55c8cf313.png)
 g…]()
+![Screenshot (234)](https://user-images.githubusercontent.com/66938135/94887545-ce753b80-04a0-11eb-8197-a3e4d862a86e.png)
+
+## Feature
+- Login & Register
+- Beli Obat Jadi
+- Beli Obat Racik
+- Halaman Berita
+- Pembayaran Virtual(Simulasi on-going)
+- Update Profile
+- API (On-Progress)
+
+
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
