@@ -6,8 +6,9 @@ import {
     CardTitle,
     CardText,
     CardGroup,
-    CardBody, ButtonGroup, Spinner
+    CardBody, ButtonGroup, Spinner, Form
 } from 'reactstrap';
+import {FormControl} from 'react-bootstrap';
 import { Link, Redirect } from 'react-router-dom'
 import Axios from 'axios'
 import { URL } from '../actions'
@@ -57,7 +58,7 @@ class Productdetailpage extends React.Component {
         }
         console.log(body)
         this.props.addCart(body)
-        this.setState({ status : true})
+        this.setState({ status: true })
     }
 
     renderCardDetail = () => {
@@ -70,6 +71,13 @@ class Productdetailpage extends React.Component {
                     <h1 style={{ color: '#e85661' }}>Product Detail</h1>
                     <h4 style={{ marginLeft: '5vw', color: '#e85661' }}>{category}</h4>
                 </CardText>
+
+                {/* <div>
+                    <Form inline style={{ marginLeft: '5vw' }}>
+                        <FormControl type="text" placeholder="Search" className=" mr-sm-2" />
+                        <Button style={{ backgroundColor: '#e85661', textDecoration: 'none', borderColor: '#e85661' }}>Cari</Button>
+                    </Form>
+                </div> */}
 
                 <div className="row" style={{ width: "80vw", margin: "auto" }}>
                     <CardGroup style={{}}>
