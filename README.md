@@ -5,6 +5,10 @@
 ![Screenshot (237)](https://user-images.githubusercontent.com/66938135/94887380-5f97e280-04a0-11eb-9120-2dd88e8d0102.png)
 ![Screenshot (236)](https://user-images.githubusercontent.com/66938135/94887389-645c9680-04a0-11eb-9648-a2d9d3959d39.png)
 ![Screenshot (235)](https://user-images.githubusercontent.com/66938135/94887395-66bef080-04a0-11eb-91c3-76571ae4e563.png)
+![Screenshot (233)](https://user-images.githubusercontent.com/66938135/94887468-95d56200-04a0-11eb-9919-ac83f37348d4.png)
+![Screenshot (232)](https://user-images.githubusercontent.com/66938135/94887476-98d05280-04a0-11eb-8a11-6aeef0d38c92.png)
+![Screenshot (233)](https://user-images.githubusercontent.com/66938135/94887510-adace600-04a0-11eb-9338-f7b55c8cf313.png)
+g…]()
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
