@@ -7,7 +7,7 @@ import { RegisterAction } from '../actions'
 class Registerpage extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
+    this.state = {  
       dropdownOpen: false,
     }
   }

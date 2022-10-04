@@ -24,7 +24,7 @@ class Categorypage extends React.Component {
 
     render() {
         const { match } = this.props
-        setTimeout(() => this.setState({ready:true}), 1500)
+        setTimeout(() => this.setState({ready:true}), 100)
         if (this.state.ready) {
             return (
     

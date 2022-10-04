@@ -156,9 +156,9 @@ class Drugspage extends React.Component {
               <div style={{ display: 'flex', width: '50vw' }}>
                 <FormGroup style={{ color: '#e85661', marginTop: '5vh', marginLeft: '1vw' }}>
                   <h3 >Jenis Obat</h3>
-                  <Input defaultValue={0} style={{ width: '10vw', color: '#e85661' }} type="select" name="jenis" innerRef={(jenis) => this.jenis = jenis} onChange={() => this.selectButton()}>
-                    {this.selectJenis()}
-                  </Input>
+                    <Input defaultValue={0} style={{ width: '10vw', color: '#e85661' }} type="select" name="jenis" innerRef={(jenis) => this.jenis = jenis} onChange={() => this.selectButton()}>
+                      {this.selectJenis()}
+                    </Input>
                 </FormGroup>
                 <FormGroup style={{ marginLeft: '5vw', marginTop: '5vh' }}>
                   <h3 style={{ color: '#e85661' }}>Nama Obat</h3>

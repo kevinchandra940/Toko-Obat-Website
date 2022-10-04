@@ -65,16 +65,16 @@ class Profilepage extends React.Component {
         this.setState({ image: e.target.files[0] })
     }
 
-    handleUpload = async () => {
-        console.log('image : ', this.state.image)
-        
-        const data = new FormData()
-        data.append('IMG', this.state.image)
-        console.log('form data : ', data.get('IMG'))
-        
-        this.props.upload(data)
-        this.setState({ image: null })
-    }
+        handleUpload = async () => {
+            console.log('image : ', this.state.image)
+            
+            const data = new FormData()
+            data.append('IMG', this.state.image)
+            console.log('form data : ', data.get('IMG'))
+            
+            this.props.upload(data)
+            this.setState({ image: null })
+        }
     
     render() {
         setTimeout(() => this.setState({ready:true}), 1500)

@@ -12,7 +12,6 @@ import {
     DropdownItem,
     NavbarText,
 } from 'reactstrap';
-import { Button, FormControl, Form } from 'react-bootstrap';
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { LogoutAction } from '../actions'
@@ -40,123 +39,109 @@ class Navbarcomponent extends React.Component {
 
     render() {
         return (
+            <div style={{borderBottomColor:'#e85661', borderBottomStyle:'solid',borderBottomWidth:'1px'}}>
+                <div style={{ width: '100%', display: 'flex', justifyContent: 'space-evenly' }}>
+                    <div style={{ width: '20%', textAlign: 'center' }}>
+                        <div>
+                            <Link to='/'>
+                                <img src={Logo} style={{ width: '50%' }} />
+                            </Link>
+                        </div>
+                    </div>
+                    <div style={{ width: '60%', display: 'flex', margin: 'auto', justifyContent: 'space-evenly' }}>
+                        <div>
+                            <Link to='/beliobat' style={{ color: '#e85661', textDecoration: 'none', fontSize: '20px' }} >
+                                <p>
+                                    Obat Obatan
+                                </p>
+                            </Link>
+                        </div>
+                        <div>
+                            <Link to='/obatracik' style={{ color: '#e85661', textDecoration: 'none', fontSize: '20px' }} >
+                                <p>
+                                    Obat Racik
+                                </p>
+                            </Link>
+                        </div>
+                        <div>
+                            <Link to='/news' style={{ color: '#e85661', textDecoration: 'none', fontSize: '20px' }} >
+                                <p>
+                                    Berita
+                                </p>
+                            </Link>
+                        </div>
+                    </div>
+                    <div style={{ width: '20%', margin: 'auto' }}>
+                        <Navbar light expand="md">
+                            <NavbarToggler onClick={this.onBtOpen} />
+                            <Collapse isOpen={this.state.isOpen} navbar>
+                                <Nav className="mr-auto" navbar>
+                                    {
+                                        this.props.username ?
 
-            <div >
-                <Navbar color="black" light expand="md">
-                    <NavbarBrand href="/" style={{marginLeft: '1vw' }}>
-                    <img src={Logo} style={{width:'15vw', height:'30vh'}}/>
-                    </NavbarBrand>
-                    <NavbarText style={{ marginRight: '10vw', marginBottom: '5vh', marginTop: '5vh', fontSize: '150%' }}></NavbarText>
-                    <NavbarToggler onClick={this.onBtOpen} />
-                    <Collapse isOpen={this.state.isOpen} navbar>
-
-
-                        <Nav className="mr-auto" navbar style={{ alignSelf: 'center', justifyContent: 'center', justifyItems: 'center', alignItems: 'center', justifySelf: 'center' }}>
-                            <NavItem style={{ textDecoration: 'none', marginLeft: '2vw', marginRight: '5vw' }}>
-                                <Link to='/beliobat' style={{ color: '#e85661', textDecoration: 'none' }} >
-                                    <h3 >
-                                        Beli Obat
-                                </h3>
-                                </Link>
-                            </NavItem>
-                            <NavItem style={{ textDecoration: 'none', color: 'black', marginLeft: '2vw', marginRight: '5vw' }}>
-                                <Link to='/obatracik' style={{ color: '#e85661', textDecoration: 'none' }}>
-                                    <h3>Obat Racik</h3>
-                                </Link>
-                            </NavItem>
-                            <NavItem style={{ textDecoration: 'none', color: 'black', marginLeft: '2vw', marginRight: '2vw' }}>
-                                <Link to='/berita' style={{ color: '#e85661', textDecoration: 'none' }}>
-                                    <h3>Berita</h3>
-                                </Link>
-                            </NavItem>
-                            {/* <NavItem style={{ textDecoration: 'none', color: 'black', marginLeft: '2vw', marginRight: '2vw' }}>
-                                <Link to='/test' style={{ color: '#e85661', textDecoration: 'none' }}>
-                                    <h3>TEST PAGE</h3>
-                                </Link>
-                            </NavItem> */}
-
-
-                            {/* <Form inline style={{ marginLeft: '5vw' }}>
-                                <FormControl type="text" placeholder="Search" className=" mr-sm-2" />
-                                <Button style={{ backgroundColor: '#e85661', textDecoration: 'none', borderColor: '#e85661' }}>Cari</Button>
-                            </Form> */}
-
-
-                            {
-
-                                this.props.username ?
-
-                                    <UncontrolledDropdown nav inNavbar style={{ marginLeft: '20vw' }}>
-                                        <DropdownToggle nav caret>
-                                            <h4 style={{ backgroundColor: 'none', color: '#e85661' }}>{this.props.username.charAt(0).toUpperCase()}</h4>
-                                        </DropdownToggle>
-                                        <DropdownMenu right>
-                                            <DropdownItem>
-                                                <Link to='/profil' style={{ textDecoration: 'none', color: '#39b4ea' }}>
-                                                    <NavItem>
-                                                        Profil
-                                                </NavItem>
-                                                </Link>
-                                            </DropdownItem>
-                                            <DropdownItem>
-                                                <Link to='/keranjang' style={{ textDecoration: 'none', color: '#e85661' }}>
-                                                    <NavItem>
-                                                        Keranjang
-                                                </NavItem>
-                                                </Link>
-                                            </DropdownItem>
-                                            <DropdownItem>
-                                                <Link to='/riwayattransaksi' style={{ textDecoration: 'none', color: '#39b4ea' }}>
-                                                    <NavItem>
-                                                        Transaksi
-                                                </NavItem>
-                                                </Link>
-                                            </DropdownItem>
-                                            <DropdownItem>
-                                                <Link to='/' onClick={this.handleLogout} style={{ textDecoration: 'none', color: '#e85661' }}>
-                                                    <NavItem style={{}}>
-                                                        Keluar
-                                                </NavItem>
-                                                </Link>
-                                            </DropdownItem>
-                                            {/* <DropdownItem divider /> */}
-                                            {/* <DropdownItem>
-                                        Reset
-                </DropdownItem> */}
-                                        </DropdownMenu>
-                                    </UncontrolledDropdown>
-
-
-
-                                    :
-
-                                    <UncontrolledDropdown nav inNavbar style={{ marginLeft: '20vw' }}>
-                                        <DropdownToggle nav caret style={{ borderColor: 'black', borderRadius: '20px', width: '5vw' }}>
-
-                                            <h5 style={{ color: '#e85661' }}>Masuk</h5>
-                                        </DropdownToggle>
-                                        <DropdownMenu right>
-                                            <DropdownItem>
-                                                <Link to='/masuk' style={{ textDecoration: 'none', color: '#e85661' }}>
-                                                    <NavItem>
-                                                        Masuk
-                                                </NavItem>
-                                                </Link>
-                                            </DropdownItem>
-                                            <DropdownItem>
-                                                <Link to='/daftar' style={{ textDecoration: 'none', color: '#e85661' }}>
-                                                    <NavItem style={{}}>
-                                                        Daftar
-                                                </NavItem>
-                                                </Link>
-                                            </DropdownItem>
-                                        </DropdownMenu>
-                                    </UncontrolledDropdown>
-                            }
-
-                        </Nav>
-                    </Collapse>
-                </Navbar>
+                                            <UncontrolledDropdown nav inNavbar>
+                                                <DropdownToggle nav caret>
+                                                    <p style={{ backgroundColor: 'none', color: '#e85661', fontSize: '20px' }}>{this.props.username.charAt(0).toUpperCase()}</p>
+                                                </DropdownToggle>
+                                                <DropdownMenu right>
+                                                    <DropdownItem>
+                                                        <Link to='/profil' style={{ textDecoration: 'none', color: '#39b4ea' }}>
+                                                            <NavItem>
+                                                                Profil
+                                                            </NavItem>
+                                                        </Link>
+                                                    </DropdownItem>
+                                                    <DropdownItem>
+                                                        <Link to='/keranjang' style={{ textDecoration: 'none', color: '#e85661' }}>
+                                                            <NavItem>
+                                                                Keranjang
+                                                            </NavItem>
+                                                        </Link>
+                                                    </DropdownItem>
+                                                    <DropdownItem>
+                                                        <Link to='/riwayattransaksi' style={{ textDecoration: 'none', color: '#39b4ea' }}>
+                                                            <NavItem>
+                                                                Transaksi
+                                                            </NavItem>
+                                                        </Link>
+                                                    </DropdownItem>
+                                                    <DropdownItem>
+                                                        <Link to='/' onClick={this.handleLogout} style={{ textDecoration: 'none', color: '#e85661' }}>
+                                                            <NavItem>
+                                                                Keluar
+                                                            </NavItem>
+                                                        </Link>
+                                                    </DropdownItem>
+                                                </DropdownMenu>
+                                            </UncontrolledDropdown>
+                                            :
+                                            <UncontrolledDropdown nav inNavbar>
+                                                <DropdownToggle nav caret style={{ borderColor: 'black', borderRadius: '20px' }}>
+                                                    <p style={{ color: '#e85661', fontSize: '20px' }}>Login</p>
+                                                </DropdownToggle>
+                                                <DropdownMenu right>
+                                                    <DropdownItem>
+                                                        <Link to='/masuk' style={{ textDecoration: 'none', color: '#e85661' }}>
+                                                            <NavItem>
+                                                                Login
+                                                            </NavItem>
+                                                        </Link>
+                                                    </DropdownItem>
+                                                    <DropdownItem>
+                                                        <Link to='/daftar' style={{ textDecoration: 'none', color: '#e85661' }}>
+                                                            <NavItem style={{}}>
+                                                                Register
+                                                            </NavItem>
+                                                        </Link>
+                                                    </DropdownItem>
+                                                </DropdownMenu>
+                                            </UncontrolledDropdown>
+                                    }
+                                </Nav>
+                            </Collapse>
+                        </Navbar>
+                    </div>
+                </div>
             </div>
 
         );
