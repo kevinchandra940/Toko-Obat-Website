@@ -96,7 +96,7 @@ class CartPage extends React.Component {
     return (
       <thead style={{ width: "45vw" }} >
         <tr>
-          <th>No</th>
+          <th>No.</th>
           <th>Nama Barang</th>
           <th>Total</th>
           <th>Action</th>
