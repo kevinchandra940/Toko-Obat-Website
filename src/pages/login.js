@@ -13,7 +13,6 @@ class Loginpage extends React.Component {
         this.state = {
             email: "",
             password: "",
-
         }
     }
 
@@ -49,7 +48,7 @@ class Loginpage extends React.Component {
                             <div style={{ width: '50%', margin: 'auto' }}>
                                 <FormGroup check>
                                     <Input type="checkbox" name="check" id="exampleCheck" />
-                                    <Label for="exampleCheck" style={{ marginBottom: '2vh' }}>Tetapkan saya masuk
+                                    <Label for="exampleCheck" style={{ marginBottom: '2vh' }}>Tetapkan saya masuk !
                                     </Label>
                                 </FormGroup>
                             </div>
